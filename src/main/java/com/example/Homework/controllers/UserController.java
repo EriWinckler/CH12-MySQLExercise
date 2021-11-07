@@ -3,6 +3,7 @@ package com.example.Homework.controllers;
 import com.example.Homework.models.User;
 import com.example.Homework.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,12 @@ public class UserController {
     @GetMapping
     public @ResponseBody List<User> getUsers() {
         return repository.findAll();
+    }
+
+    @GetMapping("/languages/{languages}")
+    public ResponseEntity<List<User>> getUserByLanguage(@PathVariable List user) {
+        return new ResponseEntity<>(repository.findAllByLanguage(language,
+                Sort.by("name")), HttpStatus.OK);
     }
 
     @PostMapping
