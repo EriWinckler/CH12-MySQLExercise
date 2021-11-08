@@ -22,9 +22,9 @@ public class UserController {
         return repository.findAll();
     }
 
-    @GetMapping("/languages/{languages}")
-    public ResponseEntity<List<User>> getUserByLanguage(@PathVariable List user) {
-        return new ResponseEntity<>(repository.findAllByLanguage(language,
+    @GetMapping("/email/{email}")
+    public ResponseEntity<List<User>> getUserByLanguage(@PathVariable String email) {
+        return new ResponseEntity<>(repository.findAllByEmail(email,
                 Sort.by("name")), HttpStatus.OK);
     }
 
